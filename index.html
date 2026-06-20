@@ -1,476 +1,304 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width,initial-scale=1" />
-<title>Alwa`s Little Space</title>
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Operation: Make Alwa Smile ❤️</title>
 <style>
-  :root{
-    --bg-a: #f7f1fb;
-    --bg-b: #eefdf9;
-    --accent: #b875e6;
-    --accent-2: #f39be8;
-    --muted: #6b6b6b;
-    --card: #ffffff;
-    --glass: rgba(255,255,255,0.7);
-  }
-  *{box-sizing:border-box}
-  body{
-    margin:0;
-    font-family: 'Poppins', system-ui, -apple-system, sans-serif;
-    background: linear-gradient(135deg,var(--bg-a),var(--bg-b));
-    min-height:100vh;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    padding:28px;
-    color:#1c1c1c;
-  }
-
-  .container{
-    width:100%;
-    max-width:920px;
-    background: linear-gradient(180deg, rgba(255,255,255,0.85), rgba(255,255,255,0.92));
-    border-radius:18px;
-    box-shadow: 0 18px 50px rgba(20,20,50,0.08);
-    padding:28px;
-    display:grid;
-    grid-template-columns: 1fr 420px;
-    gap:22px;
-  }
-
-  @media (max-width:900px){
-    .container{ grid-template-columns: 1fr; padding:18px; }
-  }
-
-  /* LEFT: Main Playground */
-  .left{
-    padding:12px 8px;
-  }
-  .hero{
-    padding:18px;
-    background: linear-gradient(180deg, rgba(255,255,255,0.6), rgba(255,255,255,0.45));
-    border-radius:14px;
-    display:flex;
-    align-items:center;
-    gap:14px;
-    margin-bottom:18px;
-  }
-  .hero .badge{
-    width:64px;height:64px;border-radius:12px;
-    background: linear-gradient(135deg,#ffe6fb,#e8fff8);
-    display:flex;align-items:center;justify-content:center;font-weight:700;color:#552e6a;font-size:22px;
-    box-shadow: 0 8px 20px rgba(90,40,120,0.06);
-  }
-  .hero h1{font-size:20px;margin:0}
-  .hero p{margin:6px 0 0 0;color:var(--muted);font-size:14px}
-
-  .cards{
-    display:flex;
-    flex-wrap:wrap;
-    gap:12px;
-    margin-top:6px;
-  }
-  .card{
-    background:var(--card);
-    min-width:150px;
-    flex:1;
-    max-width:calc(33% - 12px);
-    padding:16px;
-    border-radius:12px;
-    box-shadow: 0 8px 22px rgba(80,30,120,0.05);
-    cursor:pointer;
-    transition: transform .25s, box-shadow .25s;
-    position:relative;
-  }
-  @media (max-width:900px){
-    .card{ max-width:100%; }
-  }
-  .card:hover{ transform: translateY(-6px); box-shadow: 0 18px 40px rgba(80,30,120,0.08) }
-  .card h3{margin:0;font-size:15px}
-  .card p{margin:8px 0 0 0;color:var(--muted);font-size:13px}
-
-  .controls{
-    margin-top:18px; display:flex; gap:12px; align-items:center; flex-wrap:wrap;
-  }
-  .btn{
-    background:var(--accent-2);
-    color:white;padding:10px 14px;border-radius:10px;border:none;font-weight:600;cursor:pointer;
-    box-shadow: 0 8px 18px rgba(243,155,232,0.12);
-  }
-  .btn.secondary{
-    background:transparent;color:var(--accent);border:1px solid rgba(120,60,160,0.08);
-  }
-
-  .message-box{
-    margin-top:18px;padding:14px;border-radius:12px;background:linear-gradient(180deg, rgba(255,255,255,0.85), rgba(255,255,255,0.7));
-    border:1px solid rgba(120,60,160,0.03); min-height:56px; display:flex; align-items:center; justify-content:center;
-    color:#5b2b6b;font-weight:600;
-  }
-
-  /* RIGHT: Side panel with Quiz + extras */
-  .side{
-    padding:12px;
-  }
-  .panel{
-    background:linear-gradient(180deg, rgba(255,255,255,0.6), rgba(255,255,255,0.5));
-    border-radius:12px;padding:14px;box-shadow: 0 10px 28px rgba(60,40,80,0.04);
-  }
-  .panel h3{margin:0 0 10px 0}
-  .quiz-intro p{color:var(--muted);font-size:14px;margin:0 0 10px 0}
-  .start-quiz{ display:flex; gap:8px; align-items:center; justify-content:space-between; }
-
-  /* Quiz styling */
-  .quiz{
-    margin-top:12px;
-  }
-  .question{
-    padding:14px;border-radius:12px;background:rgba(120,60,160,0.03); margin-bottom:10px;
-  }
-  .choices{ display:flex; flex-direction:column; gap:8px; margin-top:10px; }
-  .choice{ padding:10px;border-radius:10px;background:white; cursor:pointer; border:1px solid rgba(0,0,0,0.04); transition: transform .18s, box-shadow .18s; }
-  .choice:hover{ transform: translateY(-4px); box-shadow: 0 10px 20px rgba(0,0,0,0.06) }
-  .choice.selected{ background: linear-gradient(90deg,var(--accent),var(--accent-2)); color:white; box-shadow: 0 14px 30px rgba(160,80,180,0.12); }
-
-  .progress{ height:8px;background:rgba(0,0,0,0.04); border-radius:10px; overflow:hidden; margin-top:12px; }
-  .bar{ height:100%; background:linear-gradient(90deg,var(--accent),var(--accent-2)); width:0%; transition:width .5s; }
-
-  .result{
-    padding:12px;margin-top:12px;border-radius:10px;background:linear-gradient(90deg, rgba(180,110,220,0.08), rgba(243,155,232,0.04));
-    color:#3b0f4b;font-weight:600;
-  }
-
-  /* small footer */
-  .foot-note{ font-size:12px;color:var(--muted); margin-top:12px; text-align:center }
-
-  /* subtle heart/confetti */
-  .floating-heart{
-    position:fixed; pointer-events:none; font-size:28px; transform:translate(-50%,-50%) scale(0); opacity:0; transition:all .4s cubic-bezier(.2,.9,.2,1);
-  }
-  .floating-heart.show{ transform:translate(-50%,-50%) scale(1); opacity:1; }
-
-  /* final reveal modal */
-  .overlay{
-    position:fixed; inset:0; display:none; align-items:center; justify-content:center; background:rgba(8,6,12,0.5);
-  }
-  .overlay.show{ display:flex; }
-  .modal{
-    width:92%; max-width:520px; background:linear-gradient(180deg,#fff,#fffefc); border-radius:14px; padding:22px; text-align:center;
-    box-shadow: 0 30px 80px rgba(10,10,30,0.4);
-  }
-  .modal h2{margin:0 0 10px 0}
-  .modal p{margin:8px 0 0 0; color:var(--muted)}
-  .reveal-heart{ font-size:44px; margin-top:10px; display:block; }
-  .close-btn{ margin-top:16px; padding:10px 16px; border-radius:10px; border:none; background:var(--accent); color:white; cursor:pointer; }
-
+body{
+font-family:Arial,sans-serif;
+margin:0;
+background:linear-gradient(135deg,#f7f1fb,#eefdf9);
+color:#222;
+}
+.container{max-width:1000px;margin:auto;padding:20px;}
+.hero,.panel{
+background:white;
+border-radius:18px;
+padding:20px;
+margin-bottom:20px;
+box-shadow:0 10px 25px rgba(0,0,0,.08);
+}
+h1,h2{text-align:center}
+button{
+border:none;
+padding:12px 18px;
+border-radius:12px;
+cursor:pointer;
+background:#b875e6;
+color:white;
+font-weight:bold;
+}
+.cards{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
+gap:12px;
+}
+.card{
+background:#fafafa;
+padding:15px;
+border-radius:12px;
+cursor:pointer;
+transition:.25s;
+}
+.card:hover{transform:translateY(-4px);}
+#messageBox,#memoryResult,#quizResult{
+margin-top:15px;
+padding:15px;
+border-radius:12px;
+background:#f8f2ff;
+}
+.hidden{display:none;}
+.progress{
+height:10px;
+background:#ddd;
+border-radius:999px;
+overflow:hidden;
+margin-top:10px;
+}
+.bar{
+height:100%;
+width:0%;
+background:linear-gradient(90deg,#b875e6,#f39be8);
+}
+.choice{
+background:white;
+padding:10px;
+margin-top:8px;
+border-radius:10px;
+border:1px solid #ddd;
+cursor:pointer;
+}
+.choice.selected{
+background:#b875e6;
+color:white;
+}
+#achievement{
+position:fixed;
+top:20px;
+right:20px;
+background:white;
+padding:15px;
+border-radius:12px;
+box-shadow:0 10px 20px rgba(0,0,0,.15);
+display:none;
+}
+.modal{
+display:none;
+position:fixed;
+inset:0;
+background:rgba(0,0,0,.6);
+justify-content:center;
+align-items:center;
+}
+.modal-content{
+background:white;
+padding:25px;
+border-radius:16px;
+max-width:500px;
+width:90%;
+text-align:center;
+}
 </style>
 </head>
 <body>
 
-<div class="container" role="main">
-  <div class="left">
-    <div class="hero">
-      <div class="badge">N</div>
-      <div>
-        <h1>Hey — i made this for us</h1>
-        <p>Click around. surprises and inside jokes live here. enjoy.</p>
-      </div>
-    </div>
+<div class="container">
 
-    <div class="cards" aria-live="polite">
-      <div class="card" data-msg="you will recieve cake and ice cream." id="card-ice">
-        <h3>Thank you</h3>
-        <p>You have played a huge role in making me the happiest person in the world.</p>
-      </div>
-
-      <div class="card" data-msg="A kiss from you feels like my day getting a second chance" id="card-dress">
-        <h3>you are so special</h3>
-        <p>If I met a hundred versions of you, I'd still pick this one.</p>
-      </div>
-
-      <div class="card" data-msg="I wasn't trying to fall for you. I just kept noticing things that made it impossible not to." id="card-cook">
-        <h3>I love you</h3>
-        <p>I hope one day you see yourself the way I accidentally do.</p>
-      </div>
-
-      <div class="card" data-msg="t's not the moment that makes me happy. It's you being there" id="card-banter">
-        <h3>what is it about you</h3>
-        <p>You don't realize how many ordinary moments become memories because you're in them</p>
-      </div>
-    </div>
-
-    <div class="controls">
-      <button class="btn" id="surprise">Surprise Me</button>
-      <button class="btn secondary" id="toggle-quiz">Play the Mini Mystery →</button>
-      <div style="flex:1"></div>
-    </div>
-
-    <div class="message-box" id="messageBox">Small surprises live here — click a card or hit Surprise.</div>
-  </div>
-
-  <div class="side">
-    <div class="panel quiz-intro">
-      <h3>Mini Mystery (short & chill)</h3>
-      <p>Three quick questions. Solve the tiny mystery and unlock a special message.</p>
-
-      <div class="start-quiz">
-        <button class="btn" id="startQuiz">Start Mission</button>
-        <div style="width:40%"></div>
-      </div>
-
-      <div class="quiz" id="quiz" aria-hidden="true" style="display:none;">
-        <div class="question" id="q-text"></div>
-        <div class="choices" id="choices"></div>
-        <div class="progress" style="margin-top:12px"><div class="bar" id="bar"></div></div>
-        <div style="display:flex; gap:8px; margin-top:10px;">
-          <button class="btn secondary" id="prevQ">Back</button>
-          <button class="btn" id="nextQ">Next</button>
-        </div>
-        <div id="quizResult" style="display:none;"></div>
-      </div>
-
-      <div class="result" id="hintBox" style="display:none;">Nice job — you can always try again to get different reactions.</div>
-    </div>
-
-    <div style="height:12px"></div>
-    <div class="panel" style="margin-top:12px">
-      <h3>Little extras</h3>
-      <p class="foot-note">Made by yours truly</p>
-    </div>
-  </div>
+<div class="hero">
+<h1> Operation: Make Alwa Smile</h1>
+<p style="text-align:center;"> Alwa, a classified message has been prepared. Proceed with caution </p>
 </div>
 
-<span class="floating-heart" id="heart">💖</span>
+<div class="panel">
+<h2>💌 Sweet Things</h2>
+<div class="cards">
+<div class="card" data-msg="Thank you for being one of the best parts of my life.">Thank You</div>
+<div class="card" data-msg="If I met a hundred versions of you, I'd still choose this one.">Special</div>
+<div class="card" data-msg="I wasn't trying to fall for you. Then you happened.">I Love You</div>
+<div class="card" data-msg="You turn ordinary moments into memories.">You</div>
+</div>
+<div id="messageBox">Click a card ❤️</div>
+</div>
 
-<!-- final reveal modal -->
-<div class="overlay" id="overlay" aria-hidden="true">
-  <div class="modal" role="dialog" aria-modal="true">
-    <div class="reveal-heart">✨</div>
-    <h2>Mission Complete</h2>
-    <p id="revealText">Decrypting message...</p>
-    <button class="close-btn" id="closeReveal">Close</button>
-  </div>
+<div class="panel">
+<h2>📊 Relationship Statistics</h2>
+<p>Times I've Thought About You Today: <span id="thoughts">0</span></p>
+<p>Cuteness Level: MAXIMUM</p>
+<p> Level: infinite (NUMBER TOO LARGE)</p>
+</div>
+
+<div class="panel">
+<h2>💌 Letter</h2>
+<button id="openLetter">Open Letter</button>
+<p id="letter"></p>
+</div>
+
+<div class="panel">
+<h2>📂 Memory Vault</h2>
+<div class="cards">
+<div class="card memory" data-memory="The first thing I noticed was how easy it felt to talk to you.">First Impression</div>
+<div class="card memory" data-memory="My favourite memory is still being created.">Favourite Memory</div>
+<div class="card memory" data-memory="You make random moments feel important.">Random Thing I Love</div>
+<div class="card memory" data-memory="You have no idea how often I smile because of you.">Secret File</div>
+</div>
+<div id="memoryResult"></div>
+</div>
+
+<div class="panel">
+<h2>🕵️ Mini Mystery</h2>
+<button id="startQuiz">Start Mission</button>
+
+<div id="quiz" class="hidden">
+<h3 id="question"></h3>
+<div id="choices"></div>
+<div class="progress"><div class="bar" id="bar"></div></div>
+<button id="nextBtn">Next</button>
+<div id="quizResult"></div>
+</div>
+</div>
+
+<div class="panel" style="text-align:center;">
+<button id="danger">DO NOT PRESS ⚠️</button>
+</div>
+
+</div>
+
+<div id="achievement"></div>
+
+<div class="modal" id="modal">
+<div class="modal-content">
+<h2>Mission Complete ❤️</h2>
+<p id="finalMessage"></p>
+<button onclick="document.getElementById('modal').style.display='none'">Close</button>
+</div>
 </div>
 
 <script>
-/* =========== Playground interactions =========== */
-const cards = document.querySelectorAll('.card');
-const messageBox = document.getElementById('messageBox');
-const surpriseBtn = document.getElementById('surprise');
-const heartEl = document.getElementById('heart');
-const toggleQuizBtn = document.getElementById('toggle-quiz');
-
-function popHeart(x,y){
-  heartEl.style.left = x + 'px';
-  heartEl.style.top = y + 'px';
-  heartEl.classList.add('show');
-  setTimeout(()=> heartEl.classList.remove('show'), 900);
-}
+const cards=document.querySelectorAll('.card[data-msg]');
+const box=document.getElementById('messageBox');
 
 cards.forEach(c=>{
-  c.addEventListener('click',(e)=>{
-    const msg = c.getAttribute('data-msg') || "Hey";
-    messageBox.textContent = msg;
-    const r = c.getBoundingClientRect();
-    popHeart(r.left + r.width/2, r.top + r.height/2);
-  });
+c.onclick=()=>box.textContent=c.dataset.msg;
 });
 
-const surprises = [
-  "Next time, please sit 0n my face, ",
-  "Ice cream is pending. Remind me ",
-  "you get me bricked up.",
-  "Rate the website out 10.",
- "Plot twist: this whole website was just an excuse to make you smile. Mission accomplished?",
- " I think you're kinda amazing."
- 
-];
+let thoughtCount=0;
+setInterval(()=>{
+thoughtCount+=Math.floor(Math.random()*20);
+document.getElementById('thoughts').textContent=thoughtCount;
+},150);
 
-surpriseBtn.addEventListener('click',()=>{
-  const msg = surprises[Math.floor(Math.random()*surprises.length)];
-  messageBox.textContent = msg;
-  popHeart(window.innerWidth/2, window.innerHeight/2 - 80);
+document.getElementById('openLetter').onclick=()=>{
+const text=`Dear Alwa,
+
+I made this because words sometimes feel too small.
+
+You make ordinary days feel special.
+
+And honestly? That's pretty rare.
+
+❤️`;
+
+let i=0;
+const el=document.getElementById('letter');
+el.textContent='';
+const t=setInterval(()=>{
+el.textContent+=text[i];
+i++;
+if(i>=text.length)clearInterval(t);
+},25);
+};
+
+document.querySelectorAll('.memory').forEach(btn=>{
+btn.onclick=()=>{
+document.getElementById('memoryResult').textContent=btn.dataset.memory;
+};
 });
 
-/* toggle quiz quick link */
-toggleQuizBtn.addEventListener('click', ()=>{
-  document.getElementById('startQuiz').scrollIntoView({behavior:'smooth', block:'center'});
-  // start a little attention blink
-  document.getElementById('startQuiz').classList.add('blink');
-  setTimeout(()=> document.getElementById('startQuiz').classList.remove('blink'), 900);
-});
-
-/* ============ Quiz engine (3 questions) ============ */
-
-const quizEl = document.getElementById('quiz');
-const startBtn = document.getElementById('startQuiz');
-const qText = document.getElementById('q-text');
-const choicesEl = document.getElementById('choices');
-const nextBtn = document.getElementById('nextQ');
-const prevBtn = document.getElementById('prevQ');
-const bar = document.getElementById('bar');
-const quizResult = document.getElementById('quizResult');
-const hintBox = document.getElementById('hintBox');
-const overlay = document.getElementById('overlay');
-const revealText = document.getElementById('revealText');
-const closeReveal = document.getElementById('closeReveal');
-
-let currentQ = 0;
-let answers = []; // store selected indexes
-
-const quizQuestions = [
-  {
-    q: "What's the best part about us?",
-    choices: ["The reels", "The freakiness", "Both, obviously"],
-    correct: 3 // this is playful: both = correct for max fun
-  },
-  {
-    q: "whats the cutest thing about you?",
-    choices: ["Your laugh", "literally everything", "Your smile"],
-    correct: 2
-  },
-  {
-    q: "Why did I make this website?",
-    choices: ["To impress you", "The first answer", "The second answer"],
-    correct: 0
-  }
-];
-
-function showQuestion(i){
-  const q = quizQuestions[i];
-  qText.textContent = q.q;
-  choicesEl.innerHTML = '';
-  q.choices.forEach((c, idx)=>{
-    const btn = document.createElement('div');
-    btn.className = 'choice';
-    btn.tabIndex = 0;
-    btn.textContent = c;
-    if(answers[i] === idx) btn.classList.add('selected');
-    btn.addEventListener('click', ()=>{
-      answers[i] = idx;
-      // update visuals
-      [...choicesEl.children].forEach(ch => ch.classList.remove('selected'));
-      btn.classList.add('selected');
-    });
-    choicesEl.appendChild(btn);
-  });
-  // progress bar
-  const pct = Math.round(((i) / (quizQuestions.length)) * 100);
-  bar.style.width = pct + '%';
-  // prev/next disable logic
-  prevBtn.style.display = i === 0 ? 'none' : 'inline-block';
-  nextBtn.textContent = i === quizQuestions.length-1 ? 'Finish' : 'Next';
+function achievement(msg){
+const a=document.getElementById('achievement');
+a.textContent='🏆 '+msg;
+a.style.display='block';
+setTimeout(()=>a.style.display='none',2500);
 }
 
-startBtn.addEventListener('click', ()=>{
-  quizEl.style.display = 'block';
-  quizEl.setAttribute('aria-hidden','false');
-  startBtn.disabled = true;
-  // init answers
-  answers = new Array(quizQuestions.length).fill(null);
-  currentQ = 0;
-  showQuestion(currentQ);
+document.getElementById('danger').onclick=()=>{
+achievement('You ignored instructions. Terrible spy.');
+};
+
+const questions=[
+{q:"What's my favourite thing about you?",c:["Your smile","Your personality","Everything"],a:2},
+{q:"What never gets old for me?",c:["Talking to you","Looking at you","Both obviously"],a:2},
+{q:"Why was this website made?",c:["To make you smile","For a mission","i love you"],a:2}
+];
+
+let current=0;
+let answers=[];
+
+function showQuestion(){
+const q=questions[current];
+document.getElementById('question').textContent=q.q;
+const choices=document.getElementById('choices');
+choices.innerHTML='';
+
+q.c.forEach((choice,index)=>{
+const div=document.createElement('div');
+div.className='choice';
+div.textContent=choice;
+if(answers[current]===index) div.classList.add('selected');
+
+div.onclick=()=>{
+answers[current]=index;
+document.querySelectorAll('.choice').forEach(x=>x.classList.remove('selected'));
+div.classList.add('selected');
+};
+choices.appendChild(div);
 });
 
-nextBtn.addEventListener('click', ()=>{
-  // require selection
-  if(answers[currentQ] === null){
-    // gentle shake
-    choicesEl.classList.add('shake');
-    setTimeout(()=> choicesEl.classList.remove('shake'), 400);
-    return;
-  }
-  if(currentQ < quizQuestions.length-1){
-    currentQ++;
-    showQuestion(currentQ);
-  } else {
-    // finish
-    finishQuiz();
-  }
-});
-
-prevBtn.addEventListener('click', ()=>{
-  if(currentQ > 0){
-    currentQ--;
-    showQuestion(currentQ);
-  }
-});
-
-function finishQuiz(){
-  // compute a playful score (not serious)
-  let score = 0;
-  quizQuestions.forEach((q,i)=>{
-    if(answers[i] === q.correct) score++;
-  });
-  // small randomized charm
-  const flavorText = [
-    "Nice detective work.",
-    "Lowkey impressive.",
-    "You were made for this kind of info."
-  ][Math.floor(Math.random()*3)];
-
-  quizResult.style.display = 'block';
-  quizResult.innerHTML = `<div class="result">Score: ${score}/${quizQuestions.length} — ${flavorText}</div>`;
-
-  hintBox.style.display = 'block';
-  // progress bar full
-  bar.style.width = '100%';
-
-  // show reveal after tiny "Decrypting..." delay for vibes
-  revealText.textContent = 'Decrypting message...';
-  setTimeout(()=> {
-    // subtle reveal with Alwa`s name (only here)
-    const finalMsgs = [
-      ` Alwa... this was made for you. Ice cream's on me `,
-      `you are goated. Alwa — I built this little space with you in mind. i love you.`,
-      `I know, i am too awesome`
-    ];
-    const chosen = finalMsgs[Math.floor(Math.random()*finalMsgs.length)];
-    revealText.textContent = chosen;
-    // show overlay
-    overlay.classList.add('show');
-    overlay.setAttribute('aria-hidden','false');
-  }, 1200);
+document.getElementById('bar').style.width=((current+1)/questions.length)*100+'%';
 }
 
-/* reveal close */
-closeReveal.addEventListener('click', ()=>{
-  overlay.classList.remove('show');
-  overlay.setAttribute('aria-hidden','true');
+document.getElementById('startQuiz').onclick=()=>{
+current=0;
+answers=[];
+document.getElementById('quiz').classList.remove('hidden');
+showQuestion();
+};
+
+document.getElementById('nextBtn').onclick=()=>{
+if(answers[current]==null) return;
+
+if(current<questions.length-1){
+current++;
+showQuestion();
+}else{
+let score=0;
+questions.forEach((q,i)=>{
+if(answers[i]===q.a) score++;
 });
 
-/* allow clicking outside modal to close */
-overlay.addEventListener('click', (e)=>{
-  if(e.target === overlay) {
-    overlay.classList.remove('show');
-    overlay.setAttribute('aria-hidden','true');
-  }
-});
+document.getElementById('quizResult').innerHTML='Score: '+score+'/3';
 
-/* small UX niceties: keyboard nav for choices */
-document.addEventListener('keydown', (e)=>{
-  if(e.key === 'Escape'){
-    if(overlay.classList.contains('show')) {
-      overlay.classList.remove('show');
-      overlay.setAttribute('aria-hidden','true');
-    }
-  }
-});
+const msgs=[
+"If I had a hundred chances, I'd still choose you.",
+"You somehow make ordinary moments feel important.",
+"This whole website was an excuse to tell you I adore you."
+];
 
-/* accessibility: focus start button */
-startBtn.focus();
+document.getElementById('finalMessage').textContent=msgs[Math.floor(Math.random()*msgs.length)];
+document.getElementById('modal').style.display='flex';
+}
+};
 
-/* optional: preload a tiny Easter-egg: clicking the title 5 times reveals an extra line */
-let titleClicks = 0;
-document.querySelector('.hero h1').addEventListener('click', ()=>{
-  titleClicks++;
-  if(titleClicks === 5){
-    messageBox.textContent = "You triggered a secret: you're way cooler than you think.";
-    titleClicks = 0;
-  }
-});
-
+let clicks=0;
+document.querySelector('h1').onclick=()=>{
+clicks++;
+if(clicks===5){
+achievement('Certified Cutie 💖');
+clicks=0;
+}
+};
 </script>
+
 </body>
 </html>
