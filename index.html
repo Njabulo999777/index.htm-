@@ -173,30 +173,30 @@
     <div class="hero">
       <div class="badge">N</div>
       <div>
-        <h1>Hey — made this little place</h1>
-        <p>Click around.  surprises and inside jokes live here. No pressure.</p>
+        <h1>Hey — i made this for us</h1>
+        <p>Click around. surprises and inside jokes live here. enjoy.</p>
       </div>
     </div>
 
     <div class="cards" aria-live="polite">
-      <div class="card" data-msg="Ice cream promise pending 🍦 — you pick the flavour." id="card-ice">
-        <h3>Ice Cream Promise</h3>
-        <p>Unga worry, that ice cream is the first thing you will get.</p>
+      <div class="card" data-msg="you will recieve cake and ice cream." id="card-ice">
+        <h3>Thank you</h3>
+        <p>You have played a huge role in making me the happiest person in the world.</p>
       </div>
 
-      <div class="card" data-msg="You wore a dress for me once — legendary move 😏" id="card-dress">
-        <h3>Dress Moment</h3>
-        <p>Ekugcineni😏better late than never..you looked gorgeous .</p>
+      <div class="card" data-msg="A kiss from you feels like my day getting a second chance" id="card-dress">
+        <h3>you are so special</h3>
+        <p>If I met a hundred versions of you, I'd still pick this one.</p>
       </div>
 
-      <div class="card" data-msg="You cooked pretty well, akufani👩‍🍳" id="card-cook">
-        <h3>Cooking</h3>
-        <p>I still think i cook better than you.</p>
+      <div class="card" data-msg="I wasn't trying to fall for you. I just kept noticing things that made it impossible not to." id="card-cook">
+        <h3>I love you</h3>
+        <p>.</p>I hope one day you see yourself the way I accidentally do.<p>.</p>
       </div>
 
-      <div class="card" data-msg="Our banter is unmatched — best sport ever 😌" id="card-banter">
-        <h3>liverpool is better than pirates</h3>
-        <p>iyaboza i team yakho.</p>
+      <div class="card" data-msg="t's not the moment that makes me happy. It's you being there" id="card-banter">
+        <h3>what is it about you</h3>
+        <p>You don't realize how many ordinary moments become memories because you're in them</p>
       </div>
     </div>
 
@@ -278,12 +278,12 @@ cards.forEach(c=>{
 });
 
 const surprises = [
-  "Next year You owe me a story, ",
+  "Next time, please sit 0n my face, ",
   "Ice cream is pending. Remind me ",
-  "Chef? Still impressed.",
+  "you get me bricked up.",
   "Rate the website out 10.",
  "Plot twist: this whole website was just an excuse to make you smile. Mission accomplished?",
- "Random truth: I think you're kinda amazing."
+ " I think you're kinda amazing."
  
 ];
 
@@ -321,18 +321,18 @@ let answers = []; // store selected indexes
 
 const quizQuestions = [
   {
-    q: "If we had to pick a late-night mood, what's the move?",
-    choices: ["Ice cream run 🍦", "Argue about who’s funnier", "Both, obviously"],
+    q: "What's the best part about us?",
+    choices: ["The reels", "The freakiness", "Both, obviously"],
     correct: 2 // this is playful: both = correct for max fun
   },
   {
-    q: "Who do you think is more handsome?",
-    choices: ["Chris brown", "J cole", "Me(hint: This is the correct answer)"],
+    q: "whats the cutest thing about you?",
+    choices: ["Your laugh", "literally everything", "Your smile"],
     correct: 2
   },
   {
-    q: "How bored do you think i was building this?",
-    choices: ["wasnt bored, just too smart", "The first answer", "The second answer"],
+    q: "Why did I make this website?",
+    choices: ["To impress you", "The first answer", "The second answer"],
     correct: 0
   }
 ];
@@ -420,10 +420,10 @@ function finishQuiz(){
   // show reveal after tiny "Decrypting..." delay for vibes
   revealText.textContent = 'Decrypting message...';
   setTimeout(()=> {
-    // subtle reveal with Mantuli name (only here)
+    // subtle reveal with Alwa`s name (only here)
     const finalMsgs = [
-      `You cracked it. Also, Mantuli... this was made for you. Ice cream's still on me `,
-      `Mission done. Mantuli — I built this little space with you in mind. Come claim the ice cream.`,
+      `You cracked it. Also, Alwa... this was made for you. Ice cream's on me `,
+      `you are goated. Alwa — I built this little space with you in mind. i love you.`,
       `I know, i am too awesome`
     ];
     const chosen = finalMsgs[Math.floor(Math.random()*finalMsgs.length)];
